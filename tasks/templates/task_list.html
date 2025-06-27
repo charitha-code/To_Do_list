@@ -1,0 +1,25 @@
+<!-- tasks/templates/tasks/task_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h1>📝 My To-Do List</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Task</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{ task.title }} - {{ task.complete }}
+            <a href="{% url 'delete_task' task.id %}">❌</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
